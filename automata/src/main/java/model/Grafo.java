@@ -42,6 +42,7 @@ public abstract class Grafo {
      * metodo encargado de insertar una transicion entre los nodos con peso de 1
      * @param nodoIni nodo inicial
      * @param nodoFin  nodo final
+     * @return retorna un true si inserto la transicion, de lo contrario un false
      */
     public abstract boolean insertarTransicion(int nodoIni, int nodoFin);
     /**
@@ -49,7 +50,8 @@ public abstract class Grafo {
      * en el parametro
      * @param nodoIni nodo inicial
      * @param nodoFin nodo final
-     * @param peso de la arista 
+     * @param peso de la transicion
+     * @return retorna un true si inserto la transicion, de lo contrario un false
      */
     public abstract boolean insertarTransicion(int nodoIni, int nodoFin, String peso);
     /**

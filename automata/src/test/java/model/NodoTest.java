@@ -21,7 +21,7 @@ public class NodoTest {
     public void testEsAdyacente() {
         Nodo n = new Nodo(1);        
         assertTrue(n.addAdyacencia(2, "20"));
-        assertEquals(n.esAdyacente(2),null);
+        assertEquals(n.esAdyacente(3),null);
     }
 
     @Test
