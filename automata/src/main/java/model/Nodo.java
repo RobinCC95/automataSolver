@@ -8,7 +8,8 @@ package model;
 import java.util.ArrayList;
 
 /**
- * clase encargada de generara las adyacencias del nodo 
+ * clase encargada de generara las adyacencias del nodo actual con respecto a los
+ * demas nodos
  * @author Robin  Cuayal
  */
 public class Nodo {
@@ -28,15 +29,15 @@ public class Nodo {
     /**
      * metodo encargado de validar si el nodo ingresado es adyacente al nodo actual
      * @param nodoAdy nodo adyacente
-     * @return retorna el nodo si son adyacentes, de lo contrario un null
+     * @return retorna la adyacencia del nodo, si son adyacentes, de lo contrario un null
      */
-    public Adyacente esAdyacente(int nodoAdy)
+    public Adyacente esAdyacente(Adyacente nodoAdy)
     {
         if(!this.allAdyNodo.isEmpty())
         {
             for (Adyacente ady : this.allAdyNodo)
             {
-                if(ady.getNodoAdy() == nodoAdy)
+                if(ady.equals(nodoAdy))
                 {
                     return ady;
                 }    
@@ -53,25 +54,24 @@ public class Nodo {
      */
     public boolean addAdyacencia(int nodoAdy, String peso)
     {
-        if(esAdyacente(nodoAdy) == null)
+        Adyacente tempAdy = new Adyacente(nodoAdy, peso);
+        if(esAdyacente(tempAdy) == null)
         {
-            Adyacente ady = new Adyacente(nodoAdy, peso);
-            this.allAdyNodo.add(ady);
+            this.allAdyNodo.add(tempAdy);
             return true;
         }
         return false;
     }
     /**
      * devuleve el peso de la transicion del nodo actual al nodo adyacnete
-     * @param nodoAdy es el nodo final
+     * @param nodoAdy es la adyacencia del nodo final
      * @return un String con el peso del nodo de lo contrarion un null
      */
-    public String devolverPeso(int nodoAdy)
+    public String devolverPeso(Adyacente nodoAdy)
     {
-        Adyacente ady = esAdyacente(nodoAdy);
-        if (ady != null)
+        if (nodoAdy != null)
         {
-            return ady.getPeso();
+            return nodoAdy.getPeso();
         }
         return null;
     }

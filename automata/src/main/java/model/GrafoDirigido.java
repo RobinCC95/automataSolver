@@ -40,7 +40,7 @@ public class GrafoDirigido extends Grafo{
     }
 
     @Override
-    public boolean existeTransicion(int nodoIni, int nodoFin) {
+    public boolean existeTransicion(Adyacente nodoIni, Adyacente nodoFin) {
         if(this.listAdyacencia.get(nodoIni).esAdyacente(nodoFin) != null)
         {
             return true;
