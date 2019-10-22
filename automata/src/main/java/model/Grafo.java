@@ -11,9 +11,8 @@ import java.util.ArrayList;
  *clase abstracta encargada de crear los metodos nesesarios para el grafo
  * @author Robin Cuayal
  */
-public abstract class Grafo {
+public interface Grafo {
     
-    public Grafo(){}
     /**
      * metodo encargado de dar el numero de vertices del grafo
      * @return el numero de vertices del automata
@@ -55,7 +54,7 @@ public abstract class Grafo {
      */
     public abstract boolean insertarTransicion(int nodoIni, int nodoFin, String peso);
     /**
-     * retorna el nodo del grafo al cual se le ingreso el valor identificador
+     * retorna el nodo del grafo al cual se le ingreso el valor de su identificador
      * @param identNodo identificador del nodo al que se quiere acceder
      * @return retorna el nodo al que se quiere acceder de lo contrario se devuelve
      * un null
@@ -69,9 +68,16 @@ public abstract class Grafo {
      */
     public abstract boolean existeNodo(int identNodo);
     /**
-     * metodo encargado de adicionar un nodo a la lista de adyacencia
+     * metodo encargado de adicionar un nodo a la lista de adyacencia con el 
+     * identificador de nodo equivalente a numero de nodos +1
      */
     public abstract void addNodo();
+    /**
+     * metoodo encargado de imprimir los nodos con sus nodos adyacentes
+     * en el grafo
+     * @return un String con las adyacencias de cada nodo del grafo
+     */
+    public abstract String toString();
     
     
 }

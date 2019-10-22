@@ -8,10 +8,11 @@ package model;
 import java.util.ArrayList;
 
 /**
- * Se encarga de generar las relaciones para un grafo no dirigido
+ * Se encarga de generar las relaciones para un grafo dirigido, que tiene como estados
+ * objetos de tipo Nodo 
  * @author Robin Cuayal
  */
-public class GrafoDirigido extends Grafo{
+public class GrafoDirigido implements Grafo{
     
     private int numNodosG;
     private int numTransicionsG;
@@ -109,12 +110,6 @@ public class GrafoDirigido extends Grafo{
         Nodo lA = new Nodo(numIdent);
         return lA;
     }
-    
-    /**
-     * metoodo encargado de imprimir los nodos con sus nodos adyacentes
-     * en el grafo
-     * @return un String con las adyacencias de cada nodo del grafo
-     */
     public String toString(){
         String salida = "";
         ArrayList<Adyacente> listaAdy;
