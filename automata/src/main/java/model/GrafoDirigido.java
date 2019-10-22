@@ -6,6 +6,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Se encarga de generar las relaciones para un grafo dirigido, que tiene como estados
@@ -165,7 +166,40 @@ public class GrafoDirigido implements Grafo{
         int identNodo = numNodos()+1;
         this.listAdyacencia.add(crearNodo(identNodo));
     }
-            
+    
+    /**
+     * metodo encargado de devolver el almacenamiento del nodo
+     * @param identNodo identificador del nodo
+     * @return retorna el diccionario de almacenamiento, de lo contrario
+     * retorna un null
+     */
+    public Map<String, Integer> returnAlmacenado(int identNodo)
+    {
+        Nodo nodo =returnNodo(identNodo);
+        if(nodo != null)
+        {
+            return nodo.devolverAlmacenado();
+        }
+        return null;
+        
+    }
+    /**
+     * metodo encargado de hacer la asignacion del almacenamieto
+     * @param identNodo identificador del nodo de tipo int
+     * @param almacenar dato a almacenar en el nodo de tipo map
+     * @return devuleve un true si adiciono correctamente el nodo,
+     * de lo contrario un false
+     */
+    public boolean addAlmacenado(int identNodo, Map<String, Integer> almacenar)
+    {
+        Nodo nodo =returnNodo(identNodo);
+        if(nodo != null)
+        {
+            return nodo.addAlmacenado(almacenar);
+        }
+        return false;
+        
+    }
     
     
     

@@ -1,0 +1,5 @@
+representacion:[];
+dominio: A>10 ,B<5;
+estadoInicial:[0,0];
+estadoAceptacion:[2,2],[3,3];
+transiciones:vaciarA=[5,B],vaciarB=[A,3];

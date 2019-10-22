@@ -6,6 +6,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * clase encargada de generara las adyacencias del identNodo por medio de un arraylist
@@ -16,11 +18,13 @@ public class Nodo {
     
     private int identNodo;
     private ArrayList<Adyacente> allAdyNodo;
+    private Map<String, Integer> almacenado;
     
     public Nodo(int identNodo)
     {
         this.identNodo = identNodo;
-        allAdyNodo = new ArrayList<Adyacente>();
+        allAdyNodo = new ArrayList<Adyacente>();        
+        this.almacenado = new HashMap<String, Integer>();
     }
     public int getIdentNodo()
     {
@@ -89,6 +93,34 @@ public class Nodo {
         }
         return null;
         
+    }
+    /**
+     * retorna el almacenamiento del nodo
+     * @return retorna el diccioario de almacenamiento si tiene valores, de lo contrario
+     * retorna un null
+     */
+    public Map<String, Integer> devolverAlmacenado()
+    {
+        if(!almacenado.isEmpty())
+        {
+            return this.almacenado; 
+        }
+        return null;               
+    }
+    /**
+     * metodo encargado de modificar el almacenamiento del nodo
+     * @param alamcenado de tipo hashMap para ser modificado
+     * @return retorna un true si se modifico correctamente, de lo ocntrario
+     * devuelve un false
+     */
+    public boolean addAlmacenado(Map<String, Integer> almacenado)
+    {
+        if(devolverAlmacenado() == null)
+        {            
+            this.almacenado = almacenado;
+            return true;
+        }
+        return false;
     }
     
 }

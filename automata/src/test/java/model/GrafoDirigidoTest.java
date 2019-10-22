@@ -6,6 +6,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -132,6 +134,35 @@ public class GrafoDirigidoTest {
         String peso = "x>5";
         gd.insertarTransicion(1, 2,peso);
         assertEquals(gd.pesoTransicion(1, 2),peso);
+           
+    }
+    
+    /**
+     * valida que el metodo de almacenamieto de los datos funcione correctamente
+     */
+    @Test
+    public void testAlmacenar() {
+        int nNodos = 6;
+        GrafoDirigido gd = new GrafoDirigido(nNodos);
+        String peso = "x>5";
+        boolean sitran = gd.insertarTransicion(1, 2,peso);
+        Map<String, Integer> alm = new HashMap<String, Integer>();
+        alm.put("A", 2);
+        alm.put("B", 3);
+        alm.put("B", 0);
+        boolean addAlm = gd.addAlmacenado(2, alm);
+        boolean addAlmNo = gd.addAlmacenado(2, alm);
+        boolean addAlmNo2 = gd.addAlmacenado(7, alm);
+        int valor = gd.returnAlmacenado(2).get("A");
+       //int 
+        assertAll(
+            ()-> assertEquals(gd.pesoTransicion(1, 2),peso),
+            () -> assertTrue(sitran),
+            () -> assertTrue(addAlm),
+            ()-> assertEquals(valor,2),
+            () -> assertFalse(addAlmNo),
+            () -> assertFalse(addAlmNo2)
+        );        
            
     }
     
