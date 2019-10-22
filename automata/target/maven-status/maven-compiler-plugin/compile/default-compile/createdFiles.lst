@@ -1,0 +1,4 @@
+model\Adyacente.class
+model\Grafo.class
+model\GrafoDirigido.class
+model\Nodo.class

@@ -55,40 +55,23 @@ public abstract class Grafo {
      */
     public abstract boolean insertarTransicion(int nodoIni, int nodoFin, String peso);
     /**
-     * metodo encargado de devolver los nodos adyacentes o relacionados del nodo
-     * ingresado
-     * @param nodo del grafo
-     * @return lista de nodos adyacentes
+     * retorna el nodo del grafo al cual se le ingreso el valor identificador
+     * @param identNodo identificador del nodo al que se quiere acceder
+     * @return retorna el nodo al que se quiere acceder de lo contrario se devuelve
+     * un null
      */
-    public abstract ArrayList<Adyacente> adyacentesDe(int nodo);
+    public abstract Nodo returnNodo(int identNodo);
     /**
-     * metoodo encargado de imprimir los nodos con sus nodos adyacentes
-     * en el grafo
-     * @return un String con las adyacencias de cada nodo del grafo
+     * verifica si existe el nodo en la lista de adyacencia con el identificador
+     * del nodo
+     * @param identNodo identificador del nodo al que se quiere acceder
+     * @return retorna un true si existe el nodo, de lo contrario devuelve un false
      */
-    public String toString(){
-        String salida = "";
-        ArrayList<Adyacente> listaAdy;
-        for(int i=0; i<=numNodos();i++)
-        {
-            salida += "vertice" +i;
-            listaAdy = adyacentesDe(i);
-            if (!listaAdy.isEmpty())
-            {
-                salida += "con adycanetes";
-                for (Adyacente nodo : listaAdy)
-                {
-                    salida += nodo.getNodoAdy() + " ";
-                    salida += "\n";
-                }
-            }
-            else
-            {
-                salida += "sin adycanetes";
-            }                       
-        }
-        return salida;
-    }
+    public abstract boolean existeNodo(int identNodo);
+    /**
+     * metodo encargado de adicionar un nodo a la lista de adyacencia
+     */
+    public abstract void addNodo();
     
     
 }

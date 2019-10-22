@@ -8,27 +8,28 @@ package model;
 import java.util.ArrayList;
 
 /**
- * clase encargada de generara las adyacencias del nodo 
+ * clase encargada de generara las adyacencias del identNodo por medio de un arraylist
+ con objetos adyacentes
  * @author Robin  Cuayal
  */
 public class Nodo {
     
-    private int nodo;
+    private int identNodo;
     private ArrayList<Adyacente> allAdyNodo;
     
-    public Nodo(int nodo)
+    public Nodo(int identNodo)
     {
-        this.nodo = nodo;
+        this.identNodo = identNodo;
         allAdyNodo = new ArrayList<Adyacente>();
     }
-    public int getNodo()
+    public int getIdentNodo()
     {
-        return this.nodo;
+        return this.identNodo;
     }
     /**
-     * metodo encargado de validar si el nodo ingresado es adyacente al nodo actual
-     * @param nodoAdy nodo adyacente
-     * @return retorna el nodo si son adyacentes, de lo contrario un null
+     * metodo encargado de validar si el identNodo ingresado es adyacente al identNodo actual
+     * @param nodoAdy identNodo adyacente
+     * @return retorna el identNodo si son adyacentes, de lo contrario un null
      */
     public Adyacente esAdyacente(int nodoAdy)
     {
@@ -45,9 +46,9 @@ public class Nodo {
         return null;
     }
     /**
-     * metodo encargado de adicionar la adyacencia del nodo a la lista con su peso
-     * respectivo
-     * @param nodoAdy nodo a agregar la adyacencia
+     * metodo encargado de adicionar la adyacencia del identNodo a la lista con su peso
+ respectivo
+     * @param nodoAdy identNodo a agregar la adyacencia
      * @param peso de la transicion
      * @return un true si adiciona al adyacencia, de lo contrario un false
      */
@@ -62,9 +63,9 @@ public class Nodo {
         return false;
     }
     /**
-     * devuleve el peso de la transicion del nodo actual al nodo adyacnete
-     * @param nodoAdy es el nodo final
-     * @return un String con el peso del nodo de lo contrarion un null
+     * devuleve el peso de la transicion del identNodo actual al identNodo adyacnete
+     * @param nodoAdy es el identNodo final
+     * @return un String con el peso del identNodo de lo contrarion un null
      */
     public String devolverPeso(int nodoAdy)
     {
@@ -74,6 +75,20 @@ public class Nodo {
             return ady.getPeso();
         }
         return null;
+    }
+    /**
+     * devueve todas las adyacencias que tiene el nodo en una lista de tipo
+     * Adyacente
+     * @return una lista Adyacente de lo contrario un null
+     */
+    public ArrayList<Adyacente> getAllAdyNodo()
+    {
+        if (!this.allAdyNodo.isEmpty())
+        {
+            return this.allAdyNodo;
+        }
+        return null;
+        
     }
     
 }
