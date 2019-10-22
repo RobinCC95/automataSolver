@@ -78,21 +78,25 @@ public class GrafoDirigido extends Grafo{
     }
 
     @Override
-    public boolean insertarTransicion(int nodoIni, int nodoFin) {
-        if(insertarTransicion(nodoIni, nodoFin,"1"))
-        {
+    public boolean insertarTransicion(int nodoIni, int nodoFin) 
+    {
+
+        if (insertarTransicion(nodoIni, nodoFin, "1")) {
             return true;
         }
+
         return false;
     }
 
     @Override
     public boolean insertarTransicion(int nodoIni, int nodoFin, String peso) {
-        if (!existeTransicion(nodoIni,nodoFin))
-        {
-            this.numTransicionsG++;
-            return returnNodo(nodoIni).addAdyacencia(nodoFin, peso);
+        if (existeNodo(nodoIni) && existeNodo(nodoFin)) {
+            if (!existeTransicion(nodoIni, nodoFin)) {
+                this.numTransicionsG++;
+                return returnNodo(nodoIni).addAdyacencia(nodoFin, peso);
+            }
         }
+
         return false;
     }
     /**

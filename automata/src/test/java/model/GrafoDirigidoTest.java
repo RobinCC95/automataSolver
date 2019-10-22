@@ -32,6 +32,26 @@ public class GrafoDirigidoTest {
         
     }
     /**
+     * creacion del grafo dirigido y validacion de sus estados inciales que son 
+     * ceros y adicionar nodos para ver su comportamiento con el constructor vacio
+     */
+    @Test
+    public void testGrafoDirCreacionSiNodos() {
+        GrafoDirigido gd = new GrafoDirigido();
+        gd.addNodo();
+        gd.addNodo();
+        boolean siTran = gd.insertarTransicion(1, 2);
+        boolean noTran = gd.insertarTransicion(1, 4);
+        
+        assertAll(
+                ()->assertEquals(gd.numNodos(),2),
+                ()->assertEquals(gd.numTransiciones(),1),
+                () -> assertTrue(siTran),
+                () -> assertFalse(noTran)
+        );
+        
+    }
+    /**
      * inserta las transiciones al automata y validar que se creen bien
      */
     @Test
@@ -71,15 +91,24 @@ public class GrafoDirigidoTest {
         
     }
     /**
-     * valido que exita la transicion que se inserto en el grafo
+     * valida que exita la transicion que se inserto en el grafo
      */
     @Test
     public void testExisteTransicion() {
         int nNodos = 6;
         GrafoDirigido gd = new GrafoDirigido(nNodos);
-        gd.insertarTransicion(1, 2);
-        boolean addTran = gd.existeTransicion(1, 2);
-        assertTrue(addTran);
+        boolean siTran = gd.insertarTransicion(1, 2);
+        boolean exisTran = gd.existeTransicion(1, 2);
+        boolean noTran = gd.insertarTransicion(1, 10);
+        gd.addNodo();
+        boolean siTranAdd = gd.insertarTransicion(1, 7);
+        
+        assertAll(() -> assertTrue(exisTran),
+                () -> assertTrue(siTran),
+                () -> assertFalse(noTran),
+                () -> assertTrue(siTranAdd)
+        );
+        
     }
     /**
      * valido el metodo que devuelva un false con una transicion en el grafo que
