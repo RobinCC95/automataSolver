@@ -27,43 +27,54 @@ public class Automata {
      * metodo recursivo encargado de buscar la solucion del grafo con las condiciones
      * iniciales. Del nodo inicial se intenta llegar a la lista de nods solucion y formar
      * el grafo solucion con los posibles caminos a los nodos hojas
-     * @param g grafo que  se crea y se modifica oon la funcion recursiva
      * @param nodo nodo que se esta envaluando en ese instante de la funcion
      * @param allNodoSol todas las soluciones que son posibles encontrar y llegar en el grafo
      * @param transicion la transicion actual en la que se encuentra la funicon recursiva
      * @return retorna un true si llego del nodo inicial a la lista de nodos solucion,
      * de lo contrario reorna un false
      */
-    public boolean generarSolucion(GrafoDirigido g, Nodo nodo, ArrayList<Nodo> allNodoSol, String transicion)
+    public boolean generarSolucion(Nodo nodo,
+            ArrayList<Nodo> allNodoSol, String transicion,
+            Map<String, String> transiciones)
     {
         // inicializamos  las variables
         Nodo nodoAct = new Nodo(1);
-        String transicionAct = transicion;
+        ArrayList<Nodo> allNodoSolAct;
+        Map<String, String> allTransAct = this.transiciones;
+        String transicionAct;
         boolean solucion = false;
         //actualizamos informacion y cambiamos de transicion
         do
         {
             //se actualiza la informacion del nodo con la posible transicion
             nodoAct = transicionDeNodo(nodo,transicion);
-            if(validoTransicion(nodoAct,g))
+            transicionAct = nextTransicion(allTransAct);
+            if(validoTransicion(nodoAct))
             {
-                //FALTA         marcamos como visitada el nodo y si se encuentra la solucion quitarla de la lista  
-                if(!allNodoSol.isEmpty()) // validamos si hay soluciones por hallar 
+                //marcamos como visitada el nodo y si se encuentra la solucion quitarla de la lista
+                allNodoSolAct = esSolucion(nodoAct,allNodoSol);
+                if( allNodoSolAct != null) // validamos si hay soluciones por hallar <recursivo>
                 {
-                    generarSolucion(g,nodoAct,allNodoSol,transicion);
+                    generarSolucion(nodoAct,allNodoSolAct,transicionAct,allTransAct);
                 }
                 if(solucion == false)
                 {
-                    //FALTA   quitar el nodo del grafo
+                    //quitar el nodo del grafo
+                    if(quitarNodo(nodoAct) == false)
+                    {
+                        System.out.println("error al intentar quitar el nodo");
+                    }
                 }
                 else
                 {
                     solucion = true;
                 }
-            }
-            // FALTA   se pasa a la siguiente transicion 
+            }            
+            //actualizamos el diccionario de transiciones y asignamos transicion actual
+            allTransAct = updateTransicion(transicion, allTransAct);            
         }
-        while(solucion == false && transicion == "ultima transicion");
+        // mientras la solucion sea falsa o el mapa de transiciones no sea vacio
+        while(solucion == false && !allTransAct.isEmpty());
         
        return false; 
     }
@@ -85,12 +96,52 @@ public class Automata {
      * Despues la anexa al grafo
      * al grafo
      * @param nodo nodo que se quiere agregar al grafo
-     * @param g grafo al que se le va a hacer la insercion del nodo
      * @return un true si se logro hacer la insercion correctamente, de lo contrario 
      * retorna un false
      */
-    public boolean validoTransicion(Nodo nodo, GrafoDirigido g)
+    public boolean validoTransicion(Nodo nodo)
     {
         return false;
+    }
+    /**
+     * metodo se encarga de validar si el nodo ingresado es solucion final de los nodos
+     * almacenados en la lista solucion, de ser asi lo saca de la lista de nodos 
+     * solucion
+     * @param nodo nodo a evaluar si es solucion
+     * @param allNodoSol todos los nodos solucion ingresados
+     * @return la lista de nodos si encontro el nodo en la solucion y lo quito de la lista 
+     * solucion con exito, por lo contrario entrega un null
+     */
+    public ArrayList<Nodo> esSolucion(Nodo nodo, ArrayList<Nodo> allNodoSol)
+    {
+        return null;
+    }
+    /**
+     * metodo encargado de quitar el nodo del grafo
+     * @param nodo nodo a quitar del grafo
+     * @return retorna un true si se logro quitar el nodo con exito, de lo contrario retorna un false
+     */
+    public boolean quitarNodo(Nodo nodo)
+    {
+        return false;
+    }
+    /**
+     * metodo encargado de quitar la transicion ya realizada o transiciones imposibles de hacer en el nodo.
+     * @param transicion nombre de la transicion que se va a quitar
+     * @param allTransAct todas las transiciones disponibles por hacer en el nodo
+     * @return retorna las transiciones disponibles despues de quitar la realizada, de lo contrario un null
+     */
+    public Map<String, String> updateTransicion(String transicion, Map<String, String> allTransAct)
+    {
+        return null;
+    }
+    /**
+     * metodo encargado de pasar a la siguiente transicion en el diccionario de transiciones
+     * @param allTransAct diccionario de transiciones
+     * @return retorna la clave de la primera transicion, de lo contrario un null
+     */
+    public String nextTransicion(Map<String, String> allTransAct)
+    {
+        return "";
     }
 }
